@@ -1,4 +1,6 @@
+
 class HomeworksController < ApplicationController
+  before_action :set_categories, only: [:new, :edit, :update, :create]
   before_action :set_homework, only: [:show, :edit, :update, :destroy]
 
   # GET /homeworks
@@ -28,7 +30,7 @@ class HomeworksController < ApplicationController
 
     respond_to do |format|
       if @homework.save
-        format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
+        format.html { redirect_to @homework, notice: "Homework was successfully created." }
         format.json { render :show, status: :created, location: @homework }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class HomeworksController < ApplicationController
   def update
     respond_to do |format|
       if @homework.update(homework_params)
-        format.html { redirect_to @homework, notice: 'Homework was successfully updated.' }
+        format.html { redirect_to @homework, notice: "Homework was successfully updated." }
         format.json { render :show, status: :ok, location: @homework }
       else
         format.html { render :edit }
@@ -56,19 +58,24 @@ class HomeworksController < ApplicationController
   def destroy
     @homework.destroy
     respond_to do |format|
-      format.html { redirect_to homeworks_url, notice: 'Homework was successfully destroyed.' }
+      format.html { redirect_to homeworks_url, notice: "Homework was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_homework
-      @homework = Homework.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def homework_params
-      params.require(:homework).permit(:homework_name, :category, :deadline, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_homework
+    @homework = Homework.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def homework_params
+    params.require(:homework).permit(:homework_name, :category, :deadline, :description)
+  end
+
+  def set_categories
+    @category = Category.all
+  end
 end

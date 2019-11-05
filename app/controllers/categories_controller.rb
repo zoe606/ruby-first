@@ -7,9 +7,9 @@ class CategoriesController < ApplicationController
     @category = Category.new(params.require(:category).permit(:name))
     respond_to do |format|
       if @category.save
-          format.html { redirect_to "/categories/new", notice: "Category success created!" }
+        format.html { redirect_to "/categories/new", notice: "Category success created!" }
       else
-          format.html { redirect_to "/categories/new", notice: "Category wasn't success created." }
+        format.html { redirect_to "/categories/new", notice: "Category wasn't success created." }
       end
     end
   end
@@ -28,13 +28,13 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-      respond_to do |format|
-        if @category.update(params.require(:category).permit(:name))
-          format.html { redirect_to categories_path, notice: "Category was updated." }
-        else
-          format.html { render :edit}
-        end
+    respond_to do |format|
+      if @category.update(params.require(:category).permit(:name))
+        format.html { redirect_to categories_path, notice: "Category was updated." }
+      else
+        format.html { render :edit }
       end
+    end
   end
 
   def destroy
@@ -44,5 +44,4 @@ class CategoriesController < ApplicationController
       format.html { redirect_to categories_path, notice: "Categories was deleted." }
     end
   end
-
 end
