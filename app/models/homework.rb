@@ -1,5 +1,5 @@
 class Homework < ApplicationRecord
-  default_scope order("homework_name")
+  default_scope { order("homework_name") }
   # scope dengan argumen
   # scope :created_before, ->(time) { where("created_at < ?", time) }
   # penggunannya di controller tinggal Homework.created_before(Time.zone.now)

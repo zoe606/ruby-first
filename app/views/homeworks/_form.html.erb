@@ -13,7 +13,7 @@
 
 <div class="field">
   <%= form.label :homework_name %>
-  <%= form.text_area :homework_name %>
+  <%= form.text_area :homework_name, id: :homework_homework_name %>
 </div>
 
 <div class="field">
@@ -23,19 +23,19 @@
   <% else %>
   <%= select_tag 'homework[category_id]', options_for_select(@category.collect { |c| [c.name, c.id] }) %>
   <% end %>
+</div>
 
+<div class="field">
+  <%= form.label :deadline %>
+  <%= form.date_select :deadline, id: :homework_deadline %>
+</div>
 
-  <div class="field">
-    <%= form.label :deadline %>
-    <%= form.date_select :deadline %>
-  </div>
+<div class="field">
+  <%= form.label :description %>
+  <%= form.text_area :description, id: :homework_description %>
+</div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-  <% end %>
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>
